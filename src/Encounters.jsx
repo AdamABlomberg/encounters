@@ -7,16 +7,21 @@ const axios = require('axios');
 function Images(props) {
 
   const [encounters, setEncounters] = useState();
-  const [submitClicked, setSubmitClicked] = useState(false);  // refactor this!!
+  const [upload, setUpload] = useState(false);  // refactor this!!
+
+  var setStateOfUpload = (click) => {
+    setUpload(click);
+  }
 
   useEffect(() => {
+    console.log('setStateOfUpload should change upload =', upload)
     axios.get(`/encounters`)
       .then(response => {
         //log('this is the response data from encounters =', response)
         setEncounters(response.data);
       })
       .catch(err => console.log('this is the err from encounters', err));
-  }, [submitClicked]);
+  }, [upload]);
 
 
 
@@ -28,7 +33,7 @@ function Images(props) {
           <Carousel autoPlay={false}>
             {
               encounters.map((item, i) => {
-                return (<Item data-index={i} key={i} item={item}
+                return (<Item setStateOfUpload = {setStateOfUpload} data-index={i} key={i} item={item}
                 />)
               })
             }
@@ -42,12 +47,12 @@ function Images(props) {
 //console.log(document.getElementById('fishPic').src);
 
 function Item(props) {
-
+  //console.log('props =', props);
   return (
     <div>
       <div className='box'>
         <div>
-          <UploadModal />
+          <UploadModal setStateOfUpload = {props.setStateOfUpload}/>
         </div>
         <h4 >{props.item.description}</h4>
         <img id='fishPic' className='photos' src={props.item.photourl} />

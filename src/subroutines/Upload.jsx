@@ -19,7 +19,8 @@ const style = {
   p: 4,
 };
 
-function UploadModal() {
+function UploadModal({setStateOfUpload}) {
+  //console.log('setStateOfUpload =', setStateOfUpload);
   //modal variables
   const [open, setOpen] = useState(false);
   const [photo, setPhoto] = useState();
@@ -36,6 +37,7 @@ function UploadModal() {
   const [weatherType, setWeatherType] = useState('');
   const [windSpeed, setWindSpeed] = useState();
   const [date, setDate] = useState();
+  const [upload, setUpload] = useState(false);
 
 
   const handleOpen = () => setOpen(true);
@@ -60,6 +62,7 @@ function UploadModal() {
   var handleSubmit = () => {
     handleClose();
     postData();
+    setStateOfUpload(!upload);
   }
 
   var postData = () => {
@@ -124,7 +127,6 @@ function UploadModal() {
     // .then(res => console.log(res))
     // .catch(err => console.log(err));
   }, [pressure, temperature, weatherType, windSpeed])
-
 
   return (
     <div>

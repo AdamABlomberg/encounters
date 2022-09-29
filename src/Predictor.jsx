@@ -4,19 +4,19 @@ import MoonFill from './subroutines/MoonFill.jsx';
 import moment from 'moment'
 
 
-const date = new Date();
+// const date = new Date();
 
-let day = date.getDate();
-let month = date.getMonth() + 1;
-let year = date.getFullYear();
+// let day = date.getDate();
+// let month = date.getMonth() + 1;
+// let year = date.getFullYear();
 
-// This arrangement can be altered based on how we want the date's format to appear.
-let currentDate = `${day}-${month}-${year}`;
-console.log(currentDate); // "17-6-2022"
-console.log(moment().format('MMMM Do'));
-var newDate = moment().add(11,'days').format('MMMM Do');
-console.log(newDate);
-console.log(moment('October,25').format('MMMM Do'))
+// // This arrangement can be altered based on how we want the date's format to appear.
+// let currentDate = `${day}-${month}-${year}`;
+// console.log(currentDate); // "17-6-2022"
+// console.log(moment().format('MMMM Do'));
+// var newDate = moment().add(11,'days').format('MMMM Do');
+// console.log(newDate);
+// console.log(moment('October,25').format('MMMM Do'))
 
  var Predictor = (props) => {
 
@@ -34,9 +34,9 @@ console.log(moment('October,25').format('MMMM Do'))
     }
   })
   .then((res => {
-    console.log('this is the response from the axios reqest', res.data);
+    //console.log('this is the response from the axios reqest', res.data);
     var extendedForecast = res.data;
-    console.log(extendedForecast.locations[location].values);
+    //console.log(extendedForecast.locations[location].values);
     var extendedForecastValues = extendedForecast.locations[location].values;
     var arraySeaLevelPressure = [];
     for (var i = 0; i < extendedForecastValues.length; i++) {
@@ -52,13 +52,13 @@ console.log(moment('October,25').format('MMMM Do'))
     var minPressureDate= moment().add(minIndex,'days').format('MMMM Do');
 
 
-    console.log(arraySeaLevelPressure);
-    console.log("max pressure = ", maxPressure);
-    console.log("min pressure = ", minPressure);
-    console.log("max pressure index =", maxPressureIndex);
-    console.log("min pressure index =", minPressureIndex);
-    console.log("max pressure date =", maxPressureDate);
-    console.log("min pressure date =", minPressureDate);
+    // console.log(arraySeaLevelPressure);
+    // console.log("max pressure = ", maxPressure);
+    // console.log("min pressure = ", minPressure);
+    // console.log("max pressure index =", maxPressureIndex);
+    // console.log("min pressure index =", minPressureIndex);
+    // console.log("max pressure date =", maxPressureDate);
+    // console.log("min pressure date =", minPressureDate);
   }))
 
   // moon phase  // search 2 months for new moons and full moons, record dates and report them below
@@ -846,29 +846,29 @@ for (var key in moonPhaseMonth2.phase) {
   objectMoonPhase[`${moonPhaseMonth2.monthName},${key}`] = moonPhaseMonth2.phase[key]['phaseName'];
 }
 
-console.log(objectMoonPhase);
+//console.log(objectMoonPhase);
 var nextMoons = [];
 for (var key in objectMoonPhase) {
   var arrayDate = key.split(',')
   //console.log(arrayDate);
   if (arrayDate[0] === month && arrayDate[1] >= day && objectMoonPhase[key] === 'Full moon') {
     var moonDate = moment(key).format('MMMM Do');
-    console.log( `The next full moon is on ${moonDate}.`);
+    //console.log( `The next full moon is on ${moonDate}.`);
     nextMoons.push(`The next full moon is on ${moonDate}.`);
   }
   if (arrayDate[0] === month && arrayDate[1] >= day && objectMoonPhase[key] === 'New Moon') {
     var moonDate = moment(key).format('MMMM Do');
-    console.log( `The next new moon is on ${moonDate}.`);
+    //console.log( `The next new moon is on ${moonDate}.`);
     nextMoons.push(`The next new moon is on ${moonDate}.`);
   }
   if (!(arrayDate[0] === month) && arrayDate[1] <= day && objectMoonPhase[key] === 'Full moon') {
     var moonDate = moment(key).format('MMMM Do');
-    console.log( `The next full moon is on ${moonDate}.`);
+    //console.log( `The next full moon is on ${moonDate}.`);
     nextMoons.push(`The next full moon is on ${moonDate}.`);
   }
   if (!(arrayDate[0] === month) && arrayDate[1] <= day && objectMoonPhase[key] === 'New Moon') {
     var moonDate = moment(key).format('MMMM Do');
-    console.log( `The next new moon is on ${moonDate}.`);
+    //console.log( `The next new moon is on ${moonDate}.`);
     nextMoons.push(`The next new moon is on ${moonDate}.`);
   }
 }

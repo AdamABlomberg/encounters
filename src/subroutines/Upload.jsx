@@ -64,6 +64,12 @@ function UploadModal() {
 
   var postData = () => {
 
+    axios.get(`https://api.worldweatheronline.com/premium/v1/astronomy.ashx?key=e027b9c710c5444a96d211931222709&q=${location}&date=${date}&format=JSON`)
+      .then(res => {
+        console.log(res.data);
+        console.log(res.data.data.time_zone[0].moon_phase);
+        setMoonPhase(res.data.data.time_zone[0].moon_phase);
+      })
 
     axios.get(`https://visual-crossing-weather.p.rapidapi.com/history?startDateTime=${date}&aggregateHours=24&location=${location}`,
       {
@@ -80,14 +86,6 @@ function UploadModal() {
         setTemperature(Math.round(weatherArray[29]));
         setWindSpeed(Math.round(weatherArray[33]));
       })
-    axios.get(`https://api.worldweatheronline.com/premium/v1/astronomy.ashx?key=e027b9c710c5444a96d211931222709&q=${location}&date=${date}&format=JSON`)
-      .then(res => {
-        console.log(res.data);
-        console.log(res.data.data.time_zone[0].moon_phase);
-        setMoonPhase(res.data.data.time_zone[0].moon_phase);
-      })
-
-
   }
 
   useEffect(() => {

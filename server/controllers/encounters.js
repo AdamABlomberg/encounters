@@ -3,23 +3,23 @@ var models = require('../models');
 module.exports = {
   // routes
   getEncounters: function (req, res) {
-    console.log('this is the req for the function getEncounters =', req.query);
+    //console.log('this is the req for the function getEncounters =', req.query);
     return models.encounters.getEncounterData()
       .then((data) => {
-        console.log('this is the data at the controlller =', data)
+        //console.log('this is the data at the controlller =', data)
         res.send(data)
       })
       .catch((err) => {
-        console.log('this is from the controller =', err)
+        //console.log('this is from the controller =', err)
       })
   },
 
   postEncounters: function (req, res) {
-    console.log('this is the req for the function postEncounters =', req.body);
+    //console.log('this is the req for the function postEncounters =', req.body);
     var params = [req.body];
     return models.encounters.postEncountersData(params)
       .then((data) => {
-        console.log('this is the post data at the controller = ', data)
+        //console.log('this is the post data at the controller = ', data)
         res.send(data)
       })
       .catch(err => console.log('this is an error from the post controller =', err))

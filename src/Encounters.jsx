@@ -12,7 +12,7 @@ function Images(props) {
   useEffect(() => {
     axios.get(`/encounters`)
       .then(response => {
-        console.log('this is the response data from encounters =', response)
+        //log('this is the response data from encounters =', response)
         setEncounters(response.data);
       })
       .catch(err => console.log('this is the err from encounters', err));
@@ -49,7 +49,7 @@ function Item(props) {
         <div>
           <UploadModal />
         </div>
-        <h4 >{console.log(props.item)}{props.item.description}</h4>
+        <h4 >{props.item.description}</h4>
         <img id='fishPic' className='photos' src={props.item.photourl} />
         <table className='table'>
           <tbody>

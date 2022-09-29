@@ -18,7 +18,7 @@ const StarRating = ({setStateOfRating }) => {
             key={index}
             className={index <= rating ? "on" : "off"}
             onClick={() => {
-              console.log('onclick index = ', index)
+              //console.log('onclick index = ', index)
               setRating(index);
               setStateOfRating(index)
             }

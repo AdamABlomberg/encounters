@@ -13,8 +13,8 @@ var ImageWidget = function ({setStateOfPhoto}) {
     },
     (error, result) => {
       if (!error && result && result.event === "success") {
-        console.log('result.info.secure_url = ', result.info.secure_url);
-        console.log("Done! Here is the image info: ", result.info);
+        //console.log('result.info.secure_url = ', result.info.secure_url);
+        //console.log("Done! Here is the image info: ", result.info);
         setStateOfPhoto(result.info.secure_url);
       }
     }

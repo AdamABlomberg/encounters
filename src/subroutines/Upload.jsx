@@ -45,7 +45,7 @@ function UploadModal() {
     setPhoto(newUrl);
   }
   useEffect(() => {
-    console.log('setStateOfPhoto new photo url =', photo);
+    //console.log('setStateOfPhoto new photo url =', photo);
   }, [photo]);
 
   var setStateOfRating = (newRating) => {
@@ -53,7 +53,7 @@ function UploadModal() {
   }
 
   useEffect(() => {
-    console.log('setStateOfRating new rating =', rating);
+    //console.log('setStateOfRating new rating =', rating);
   }, [rating]);
 
 
@@ -66,8 +66,8 @@ function UploadModal() {
 
     axios.get(`https://api.worldweatheronline.com/premium/v1/astronomy.ashx?key=e027b9c710c5444a96d211931222709&q=${location}&date=${date}&format=JSON`)
       .then(res => {
-        console.log(res.data);
-        console.log(res.data.data.time_zone[0].moon_phase);
+        //console.log(res.data);
+        //console.log(res.data.data.time_zone[0].moon_phase);
         setMoonPhase(res.data.data.time_zone[0].moon_phase);
       })
 
@@ -79,8 +79,8 @@ function UploadModal() {
       })
       .then(res => {
         const weatherArray = res.data.split(',');
-        console.log('res', res);
-        console.log('weatherArray ', weatherArray);
+        //console.log('res', res);
+        //console.log('weatherArray ', weatherArray);
         setPressure(Math.round(weatherArray[42]));
         setWeatherType(weatherArray[weatherArray.length - 1]);
         setTemperature(Math.round(weatherArray[29]));
@@ -89,40 +89,40 @@ function UploadModal() {
   }
 
   useEffect(() => {
-    console.log('photo = ', photo);
-    console.log('lure = ', lure);
-    console.log('location = ', location);  // required
-    console.log('length = ', length);
-    console.log('weight = ', weight);
-    console.log('rating = ', rating);
-    console.log('waterWay = ', waterWay);
-    console.log('description = ', description);
-    console.log('date = ', date); // required
-    console.log('pressure = ', pressure);
-    console.log('moonPhase = ', moonPhase);
-    console.log('temperature = ', temperature);
-    console.log('weatherType = ', weatherType);
-    console.log('windSpeed = ', windSpeed);
+    // console.log('photo = ', photo);
+    // console.log('lure = ', lure);
+    // console.log('location = ', location);  // required
+    // console.log('length = ', length);
+    // console.log('weight = ', weight);
+    // console.log('rating = ', rating);
+    // console.log('waterWay = ', waterWay);
+    // console.log('description = ', description);
+    // console.log('date = ', date); // required
+    // console.log('pressure = ', pressure);
+    // console.log('moonPhase = ', moonPhase);
+    // console.log('temperature = ', temperature);
+    // console.log('weatherType = ', weatherType);
+    // console.log('windSpeed = ', windSpeed);
 
     axios.post('/encounters',
-    {
-      'photourl': photo,
-      'lure': lure,
-      'location': location,
-      'length': length,
-      'weight': weight,
-      'rating': rating,
-      'waterway': waterWay,
-      'description': description,
-      'pressure': pressure,
-      'moonphase': moonPhase,
-      'temperature': temperature,
-      'weathertype': weatherType,
-      'windspeed': windSpeed,
-      'date': date
-    })
-.then(res => console.log(res))
-.catch(err => console.log(err));
+      {
+        'photourl': photo,
+        'lure': lure,
+        'location': location,
+        'length': length,
+        'weight': weight,
+        'rating': rating,
+        'waterway': waterWay,
+        'description': description,
+        'pressure': pressure,
+        'moonphase': moonPhase,
+        'temperature': temperature,
+        'weathertype': weatherType,
+        'windspeed': windSpeed,
+        'date': date
+      })
+    // .then(res => console.log(res))
+    // .catch(err => console.log(err));
   }, [pressure, temperature, weatherType, windSpeed])
 
 
@@ -141,18 +141,26 @@ function UploadModal() {
           </Typography>
           <Typography sx={{ mt: 2 }}>
             <div>
+              * Title<input className='button-review' type='text' size='45' placeholder='enter a title for your experience...' onChange={(e) => {
+                setDescription(e.target.value)
+              }} />
+            </div>
+            <div>
+              * Rate the Experience <StarRating setStateOfRating={setStateOfRating} />
+            </div>
+            <div>
               * Location <input className='button-review' type='text' size='25' placeholder='City, State...' onChange={(e) => {
                 setLocation(e.target.value)
               }} />
             </div>
             <div>
-              * Lake/River <input className='button-review' type='text' size='25' placeholder='enter water way here...' onChange={(e) => {
-                setWaterWay(e.target.value)
+              * Date<input className='button-review' type='text' size='25' placeholder='YYYY-DD-MM...' onChange={(e) => {
+                setDate(e.target.value)
               }} />
             </div>
             <div>
-              * Date<input className='button-review' type='text' size='25' placeholder='YYYY-DD-MM...' onChange={(e) => {
-                setDate(e.target.value)
+              * Lake/River <input className='button-review' type='text' size='25' placeholder='enter water way here...' onChange={(e) => {
+                setWaterWay(e.target.value)
               }} />
             </div>
             <div>
@@ -170,26 +178,18 @@ function UploadModal() {
                 setWeight(e.target.value)
               }} />
             </div>
-            <div>
+            <div> * Upload Photo
               <button
-                id="upload_widget"
-                className="cloudinary-button"
+                className="button-review"
                 onClick={() => { ImageWidget(setStateOfPhoto = { setStateOfPhoto }) }}
               >
-                * Upload Photo
+                Upload
               </button>
             </div>
-            <div>
-              * Description<input className='button-review' type='text' size='45' placeholder='describe your fishing experience...' onChange={(e) => {
-                setDescription(e.target.value)
-              }} />
-            </div>
-            <div>
-              * Rate the Experience <StarRating setStateOfRating={setStateOfRating} />
-            </div>
+
             <div>
               <button className='button-review' onClick={handleSubmit}>
-                submit
+                SUBMIT
               </button>
             </div>
           </Typography>

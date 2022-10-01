@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -91,42 +91,48 @@ function UploadModal({setStateOfUpload}) {
       })
   }
 
-  useEffect(() => {
-    // console.log('photo = ', photo);
-    // console.log('lure = ', lure);
-    // console.log('location = ', location);  // required
-    // console.log('length = ', length);
-    // console.log('weight = ', weight);
-    // console.log('rating = ', rating);
-    // console.log('waterWay = ', waterWay);
-    // console.log('description = ', description);
-    // console.log('date = ', date); // required
-    // console.log('pressure = ', pressure);
-    // console.log('moonPhase = ', moonPhase);
-    // console.log('temperature = ', temperature);
-    // console.log('weatherType = ', weatherType);
-    // console.log('windSpeed = ', windSpeed);
+  const previousValues = useRef({pressure, moonPhase});
 
-    axios.post('/encounters',
-      {
-        'photourl': photo,
-        'lure': lure,
-        'location': location,
-        'length': length,
-        'weight': weight,
-        'rating': rating,
-        'waterway': waterWay,
-        'description': description,
-        'pressure': pressure,
-        'moonphase': moonPhase,
-        'temperature': temperature,
-        'weathertype': weatherType,
-        'windspeed': windSpeed,
-        'date': date
-      })
-    // .then(res => console.log(res))
-    // .catch(err => console.log(err));
-  }, [pressure, temperature, weatherType, windSpeed])
+  useEffect(() => {
+    if (
+      previousValues.current.pressure !== pressure && previousValues.current.moonPhase !== moonPhase
+    ) {
+      // console.log('photo = ', photo);
+      // console.log('lure = ', lure);
+      // console.log('location = ', location);  // required
+      // console.log('length = ', length);
+      // console.log('weight = ', weight);
+      // console.log('rating = ', rating);
+      // console.log('waterWay = ', waterWay);
+      // console.log('description = ', description);
+      // console.log('date = ', date); // required
+      // console.log('pressure = ', pressure);
+      // console.log('moonPhase = ', moonPhase);
+      // console.log('temperature = ', temperature);
+      // console.log('weatherType = ', weatherType);
+      // console.log('windSpeed = ', windSpeed);
+
+      axios.post('/encounters',
+        {
+          'photourl': photo,
+          'lure': lure,
+          'location': location,
+          'length': length,
+          'weight': weight,
+          'rating': rating,
+          'waterway': waterWay,
+          'description': description,
+          'pressure': pressure,
+          'moonphase': moonPhase,
+          'temperature': temperature,
+          'weathertype': weatherType,
+          'windspeed': windSpeed,
+          'date': date
+        })
+      // .then(res => console.log(res))
+      // .catch(err => console.log(err));
+    }
+    })
 
   return (
     <div>

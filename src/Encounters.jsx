@@ -19,6 +19,7 @@ function Images(props) {
       .then(response => {
         //log('this is the response data from encounters =', response)
         setEncounters(response.data);
+        console.log(response.data);
       })
       .catch(err => console.log('this is the err from encounters', err));
   }, [upload]);

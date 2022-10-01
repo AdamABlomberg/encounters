@@ -46,23 +46,15 @@ function UploadModal({setStateOfUpload}) {
   var setStateOfPhoto = (newUrl) => {
     setPhoto(newUrl);
   }
-  useEffect(() => {
-    //console.log('setStateOfPhoto new photo url =', photo);
-  }, [photo]);
 
   var setStateOfRating = (newRating) => {
     setRating(newRating);
   }
 
-  useEffect(() => {
-    //console.log('setStateOfRating new rating =', rating);
-  }, [rating]);
-
-
   var handleSubmit = () => {
     handleClose();
     postData();
-    setStateOfUpload(!upload);
+    //setStateOfUpload(!upload);
   }
 
   var postData = () => {
@@ -129,6 +121,11 @@ function UploadModal({setStateOfUpload}) {
           'windspeed': windSpeed,
           'date': date
         })
+        .then(()=>{
+          setStateOfUpload(!upload);
+          setLength('stop');  // This is kind of cheating.  Not sure why there are three calls to this.
+        }
+        );
       // .then(res => console.log(res))
       // .catch(err => console.log(err));
     }

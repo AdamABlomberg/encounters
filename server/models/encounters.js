@@ -10,14 +10,12 @@ module.exports = {
       const queryArgs = [];
       return db.query(queryString, queryArgs)
        .then((res) => {
-        //console.log(res.rows);
         return res.rows
        })
        .catch (err => console.log(err));
     },
 
     postEncountersData: function (params) {
-      //console.log('params at the model',params);
       const photourl= params[0].photourl;
       const lure = params[0].lure;
       const location = params[0].location;
@@ -38,7 +36,6 @@ module.exports = {
       .then(res => console.log('this is the response from the post query =', res))
       .catch(err => console.log('this is an error at the post query =', err));
     }
-
   // queries go here...
 
   // getReviewData: function (params) {

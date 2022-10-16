@@ -3,6 +3,7 @@ import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@mui/material'
 import UploadModal from './subroutines/Upload.jsx'
 const axios = require('axios');
+import moment from 'moment'
 
 function Images(props) {
 
@@ -17,7 +18,7 @@ function Images(props) {
     console.log('setStateOfUpload should change upload =', upload)
     axios.get(`/encounters`)
       .then(response => {
-        //log('this is the response data from encounters =', response)
+        //console.log('this is the response data from encounters =', response)
         setEncounters(response.data);
         console.log(response.data);
       })
@@ -60,13 +61,13 @@ function Item(props) {
         <table className='table'>
           <tbody>
             <tr>
-              <td width='200' align='left' >lake/river: {props.item.waterway}</td><td width='200' align='left'>date: {props.item.date}</td><td width='200' align='left'>location: {props.item.location}</td>
+              <td width='200' align='left' >lake/river: {props.item.waterway}</td><td width='200' align='left'>date: {moment(props.item.date).format("MMM Do, YYYY")}</td><td width='200' align='left'>location: {props.item.location}</td>
             </tr>
             <tr>
               <td width='200' align='left' >rating: {props.item.rating}</td><td width='200' align='left'>lure: {props.item.lure}</td><td width='200' align='left'>length: {props.item.length}"</td>
             </tr>
             <tr>
-              <td width='200' align='left' >weight: {props.item.weight}lbs</td><td width='200' align='left'>pressure: {props.item.pressure}mb</td><td width='200' align='left'>moon phase: {props.item.moonphase}</td>
+              <td width='200' align='left' >weight: {props.item.weight}lbs</td><td width='200' align='left'>pressure: {props.item.pressure}mb </td><td width='200' align='left'>moon phase: {props.item.moonphase}</td>
             </tr>
             <tr>
               <td width='200' align='left' >temperature: {props.item.temperature}</td><td width='200' align='left'>weather: {props.item.weathertype}</td><td width='200' align='left'>wind speed: {props.item.windspeed}mph</td>

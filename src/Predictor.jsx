@@ -922,14 +922,14 @@ var Predictor = (props) => {
     <div>
 
       {!nextMoons ? <div></div> :
-        <div>
-          <h4 className='box'>Predictor</h4>
+        <div className='predictor'>
+          <div className='box'>Predictor</div>
           <div className='table'>
-            <ul>
-              <li>The day in the extended forecast with maximum barometric pressure is {moment().add(maxPressureIndex, 'days').format('MMMM Do')}.</li>
-              <li>The day in the extended forecast with minimum barometric pressure is {moment().add(minPressureIndex, 'days').format('MMMM Do')}.</li>
-              <li> 🌕 {nextMoons[0]}</li>
-              <li> 🌑 {nextMoons[1]}</li>
+            <ul >
+              <li className='data'>The day in the extended forecast with maximum barometric pressure is {moment().add(maxPressureIndex, 'days').format('MMMM Do')}.</li>
+              <li className='data'>The day in the extended forecast with minimum barometric pressure is {moment().add(minPressureIndex, 'days').format('MMMM Do')}.</li>
+              <li className='data'> 🌕 {nextMoons[0]}</li>
+              <li className='data'> 🌑 {nextMoons[1]}</li>
             </ul>
           </div>
           <div>

@@ -69,7 +69,7 @@ function UploadModal({setStateOfUpload}) {
     axios.get(`https://visual-crossing-weather.p.rapidapi.com/history?startDateTime=${date}&aggregateHours=24&location=${location}`,
       {
         headers: {
-          'X-RapidAPI-Key': '17784bc1e1mshe7d0c4d9ad6c702p1e5185jsnc6bca7d8af3a',
+          'X-RapidAPI-Key': 'e61b0a9f09mshdb58f5e2ab6d180p1d7582jsn13186e52753c',
         }
       })
       .then(res => {

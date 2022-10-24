@@ -15,12 +15,12 @@ function Images(props) {
   }
 
   useEffect(() => {
-    console.log('setStateOfUpload should change upload =', upload)
+    //console.log('setStateOfUpload should change upload =', upload)
     axios.get(`/encounters`)
       .then(response => {
         //console.log('this is the response data from encounters =', response)
         setEncounters(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch(err => console.log('this is the err from encounters', err));
   }, [upload]);

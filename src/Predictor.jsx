@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 const axios = require('axios');
 import MoonFill from './subroutines/MoonFill.jsx';
 import moment from 'moment'
+import { rapidapiConfig } from './rapidapiConfig.js'
 
 var Predictor = (props) => {
 
@@ -20,7 +21,7 @@ var Predictor = (props) => {
     axios.get(`https://visual-crossing-weather.p.rapidapi.com/forecast?aggregateHours=24&location=${location}&contentType=json`,
       {
         headers: {
-          'X-RapidAPI-Key': '9902ee0a3fmshd4e111db7197dd9p1804b4jsnb1fc2b449c1c',
+          'X-RapidAPI-Key': 'e61b0a9f09mshdb58f5e2ab6d180p1d7582jsn13186e52753c',
         }
       })
       .then((res => {
